@@ -3,3 +3,4 @@ class Solution:
         for row in matrix:
             if target in row:
                 return True
+        return
