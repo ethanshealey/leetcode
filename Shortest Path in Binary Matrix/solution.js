@@ -17,7 +17,7 @@ const shortestPathBinaryMatrix = (grid) => {
     if(grid[0][0] === 1) return -1
     
     // initialize the queue and length
-    const queue = [[0,0,1]]
+    let queue = [[0,0,1]]
     const n = grid.length
     
     // initialize the seen set
@@ -45,7 +45,7 @@ const shortestPathBinaryMatrix = (grid) => {
             // add new node to seen set
             seen.add(nr + '' + nc)
             // add new nodes to queue
-            queue.unshift([nr, nc, s + 1])
+            queue = [[nr, nc, s + 1], ...queue]
         }
     }
     // no path found :(
