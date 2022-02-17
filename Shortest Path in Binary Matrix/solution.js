@@ -23,6 +23,12 @@ const shortestPathBinaryMatrix = (grid) => {
     // initialize the seen set
     const seen = new Set('00')
     
+    // location is valid if:
+    //    * nr and nc do not exceed the play area
+    //    * seen set does not contain the new node
+    //    * the new node is not a 1
+    const notValidLocation = (row, col) =>  row < 0 || row >= n || col < 0 || col >=n || seen.has(row + '' + col) || grid[row][col] === 1
+    
     // while there still remains possible moves
     while(queue.length) {
         // get the row, col, and current step count from queue
@@ -35,11 +41,7 @@ const shortestPathBinaryMatrix = (grid) => {
             let nr = r + direction[0]
             let nc = c + direction[1]
             // check if direction is valid
-            // location is valid if:
-            //    * nr and nc do not exceed the play area
-            //    * seen set does not contain the new node
-            //    * the new node is not a 1
-            if(nr < 0 || nr >= n || nc < 0 || nc >=n || seen.has(nr + '' + nc) || grid[nr][nc] === 1) continue
+            if(notValidLocation(nr, nc)) continue
             // add new node to seen set
             seen.add(nr + '' + nc)
             // add new nodes to queue
