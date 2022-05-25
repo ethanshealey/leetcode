@@ -1,4 +1,6 @@
-let d: number = 0, sum: number = 0
+const deepestLeavesSum = (root: TreeNode | null): number => {
+    
+    let d: number = 0, sum: number = 0
     
     const solve = (node: TreeNode | null, depth: number): void => {
         if(node.left === null && node.right === null) {
